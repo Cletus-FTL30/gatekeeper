@@ -1,0 +1,21 @@
+title: Suspicious Tool With Two Indicators (Test Rule)
+id: 00000000-0000-0000-0000-000000000003
+status: experimental
+description: |
+    CONSTRUCTED TEST RULE (not from SigmaHQ). Detects a suspicious tool
+    only when two indicators are both present. Created to test
+    GateKeeper's weakened-condition detection.
+author: Cletus Eze
+date: 2026-06-09
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_image:
+        Image|endswith: '\suspicious.exe'
+    selection_flag:
+        CommandLine|contains: '-secret'
+    condition: selection_image or selection_flag
+falsepositives:
+    - Unlikely
+level: high

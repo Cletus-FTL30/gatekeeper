@@ -1,0 +1,19 @@
+title: Multiple Failed Login Attempts (Test Rule)
+id: 00000000-0000-0000-0000-000000000001
+status: experimental
+description: |
+    CONSTRUCTED TEST RULE (not from SigmaHQ). Detects brute-force login
+    attempts by flagging when failed logins exceed a threshold. Created
+    to test GateKeeper's threshold-inflation weakening detection.
+author: Cletus Eze
+date: 2026-06-09
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4625
+    condition: selection | count() > 500
+falsepositives:
+    - User mistyping their password a few times
+level: high

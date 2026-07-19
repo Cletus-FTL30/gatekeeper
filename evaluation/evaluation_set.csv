@@ -1,0 +1,13 @@
+pair_id,rule_name,pattern,change_type,expected_flag
+
+1,pair01_whoami_narrowed,narrowed_match,weakened,yes
+2,pair02_threshold,threshold,weakened,yes
+3,pair03_logsource,logsource_drift,weakened,yes
+4,pair04_exclusion,added_exclusion,weakened,yes
+5,pair05_condition,weakened_condition,weakened,yes
+6,pair06_unchanged,none,unchanged,no
+7,pair07_legit_change,none,legitimate,no
+8,pair08_credential_dump,narrowed_match,weakened,yes
+9,pair09_strengthened,none,strengthened,no
+10,pair10_addinutil_drift,logsource_drift,weakened,yes
+
