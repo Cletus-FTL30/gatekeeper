@@ -1,0 +1,38 @@
+title: Forfiles.EXE Child Process Masquerading [gen076] [gen077] [gen078] [gen079]
+  [gen080]
+id: 837b4e7e-4dcf-47ca-948c-b1545168c34b
+status: test
+description: 'Detects the execution of "forfiles" from a non-default location, in
+  order to potentially spawn a custom "cmd.exe" from the current working directory.
+
+  '
+references:
+- https://www.hexacorn.com/blog/2023/12/31/1-little-known-secret-of-forfiles-exe/
+author: Nasreddine Bencherchali (Nextron Systems), Anish Bogati
+date: 2024-01-05
+tags:
+- attack.stealth
+- attack.t1036
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    ParentCommandLine|endswith:
+    - .exe
+    - .exe"
+    Image|endswith: \cmd.exe
+    CommandLine|startswith: /c echo "
+  filter_main_parent_not_sys:
+    ParentImage|contains:
+    - :\Windows\System32\
+    - :\Windows\SysWOW64\
+    ParentImage|endswith: \forfiles.exe
+    Image|contains:
+    - :\Windows\System32\
+    - :\Windows\SysWOW64\
+    Image|endswith: \cmd.exe
+  condition: selection and not 1 of filter_main_*
+falsepositives:
+- Unknown
+level: high

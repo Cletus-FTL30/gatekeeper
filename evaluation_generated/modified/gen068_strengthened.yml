@@ -1,0 +1,31 @@
+title: Potential NTLM Coercion Via Certutil.EXE [gen062] [gen063] [gen064] [gen065]
+  [gen066] [gen067] [gen068]
+id: 2124142d-8041-485d-897d-93cb6e9992f9
+status: test
+description: Detects possible NTLM coercion via certutil using the 'syncwithWU' flag
+references:
+- https://github.com/LOLBAS-Project/LOLBAS/issues/243
+author: Nasreddine Bencherchali (Nextron Systems)
+date: 2022-09-01
+modified: 2023-02-14
+tags:
+- attack.stealth
+- attack.t1218
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_img:
+  - Image|endswith:
+    - \certutil.exe
+    - \certutil_backup.exe
+  - OriginalFileName: CertUtil.exe
+  selection_cli:
+    CommandLine|contains|all:
+    - ' -syncwithWU '
+    - ' \\\\'
+  condition: all of selection_*
+falsepositives:
+- Unknown
+level: high
+regression_tests_path: regression_data/rules/windows/process_creation/proc_creation_win_certutil_ntlm_coercion/info.yml

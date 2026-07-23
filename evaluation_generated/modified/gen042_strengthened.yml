@@ -1,0 +1,33 @@
+title: File Download Using Notepad++ GUP Utility [gen036] [gen037] [gen038] [gen039]
+  [gen040] [gen041] [gen042]
+id: a7bbd84d-e12b-4d92-8c82-ac8ea4d68e94
+status: test
+description: Detects execution of the Notepad++ updater (gup) from a process other
+  than Notepad++ to download files.
+references:
+- https://twitter.com/nas_bench/status/1535322182863179776
+author: Nasreddine Bencherchali (Nextron Systems)
+date: 2022-06-10
+modified: 2023-03-02
+tags:
+- attack.command-and-control
+- attack.t1105
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_img:
+  - Image|endswith:
+    - \GUP.exe
+    - \GUP_backup.exe
+  - OriginalFileName: gup.exe
+  selection_cli:
+    CommandLine|contains|all:
+    - ' -unzipTo '
+    - http
+  filter:
+    ParentImage|endswith: \notepad++.exe
+  condition: all of selection* and not filter
+falsepositives:
+- Other parent processes other than notepad++ using GUP that are not currently identified
+level: high

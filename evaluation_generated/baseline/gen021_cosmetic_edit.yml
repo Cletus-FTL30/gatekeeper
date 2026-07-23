@@ -1,0 +1,27 @@
+title: Php Inline Command Execution [gen016] [gen017] [gen018] [gen019] [gen020] [gen021]
+id: 2856f306-ae99-46a7-af50-44d1cc502530
+status: test
+description: Detects execution of php using the "-r" flag. This is could be used as
+  a way to launch a reverse shell or execute live php code.
+references:
+- https://www.php.net/manual/en/features.commandline.php
+- https://www.revshells.com/
+- https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+author: Nasreddine Bencherchali (Nextron Systems)
+date: 2023-01-02
+tags:
+- attack.execution
+- attack.t1059
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_img:
+  - Image|endswith: \php.exe
+  - OriginalFileName: php.exe
+  selection_cli:
+    CommandLine|contains: ' -r'
+  condition: all of selection_*
+falsepositives:
+- Unknown
+level: medium
