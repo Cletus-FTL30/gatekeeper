@@ -1,5 +1,5 @@
 title: NodeJS Execution of JavaScript File [gen055]
-id: 89ec13ea-c804-48e0-9610-004e07b28cc2
+id: 49bbd421-0d4c-4701-ad5f-db1485e7b8be
 status: experimental
 description: 'Detects execution of JavaScript or JSC files using NodeJs binary node.exe,
   that could be potentially suspicious.

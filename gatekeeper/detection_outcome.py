@@ -1,7 +1,7 @@
-# Match values taken from the official Sigma -> Splunk conversion:
-#   Original rule compiled to: CommandLine="*.exe whoami*"
-#   Weakened rule compiled to: CommandLine="*cmd.exe whoami*"
-# A Splunk "*X*" query matches any event whose CommandLine contains X.
+# Match values from the Sigma to Splunk conversion
+# Original rule: CommandLine="*.exe whoami*"
+# Weakened rule: CommandLine="*cmd.exe whoami*"
+# Splunk matches any command line containing this value
 
 original_match = ".exe whoami"
 weakened_match = "cmd.exe whoami"

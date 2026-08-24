@@ -1,5 +1,5 @@
 title: Windows Internet Hosted WebDav Share Mount Via Net.EXE [gen083] [gen084] [gen085]
-id: 3d3931be-cf6c-4911-8b27-933626a95bed
+id: 9cadb887-a23f-4e1a-8075-c5a953541814
 status: test
 description: Detects when an internet hosted webdav share is mounted using the "net.exe"
   utility

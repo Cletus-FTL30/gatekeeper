@@ -1,5 +1,5 @@
 title: Suspicious Msbuild Execution By Uncommon Parent Process [gen112]
-id: 3ddeba75-5c30-46a9-87ae-ab0ada102959
+id: 84d77e90-d182-4198-9277-9880b1933d08
 status: test
 description: Detects suspicious execution of 'Msbuild.exe' by a uncommon parent process
 references:

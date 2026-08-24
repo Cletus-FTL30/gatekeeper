@@ -1,5 +1,5 @@
 title: Explorer NOUACCHECK Flag [gen048] [gen049] [gen050] [gen051] [gen052]
-id: b27628a3-7f2a-4758-acd3-e8fe19424f61
+id: 18a64858-d238-4248-b161-d468063e6ff4
 status: test
 description: Detects suspicious starts of explorer.exe that use the /NOUACCHECK flag
   that allows to run all sub processes of that newly started explorer.exe without

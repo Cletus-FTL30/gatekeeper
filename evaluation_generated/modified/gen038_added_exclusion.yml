@@ -1,5 +1,5 @@
 title: File Download Using Notepad++ GUP Utility [gen036] [gen037] [gen038]
-id: 61cd200f-c297-4186-840c-32689bb2b36c
+id: 415a1172-56cb-424f-9745-b7d88040b513
 status: test
 description: Detects execution of the Notepad++ updater (gup) from a process other
   than Notepad++ to download files.

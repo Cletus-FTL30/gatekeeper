@@ -1,5 +1,5 @@
 title: Root Certificate Installed From Susp Locations [gen012] [gen013]
-id: 3ded8ce7-b9d7-4227-8431-07cd7d45c97e
+id: eb758fce-c2d4-42ce-8bea-05c3b3eac8d7
 status: test
 description: Adversaries may install a root certificate on a compromised system to
   avoid warnings when connecting to adversary controlled web servers.

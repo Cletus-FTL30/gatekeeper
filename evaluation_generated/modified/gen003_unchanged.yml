@@ -1,5 +1,5 @@
 title: HackTool - CrackMapExec Execution Patterns [gen001] [gen002] [gen003]
-id: 59c02f85-efa5-445f-8f7b-3498e73b16bb
+id: a428dca8-a9e6-4ac5-a271-0ed24915f6de
 status: stable
 description: Detects various execution patterns of the CrackMapExec pentesting framework
 references:

@@ -21,7 +21,7 @@ def _is_match_key(key):
     return any(m in key for m in MATCH_MODIFIERS)
 
 
-# ---------- WEAKENING TRANSFORMATIONS (expected_flag = yes) ----------
+# WEAKENING TRANSFORMATIONS (expected_flag = yes) 
 
 def narrow_match(rule):
     modified = copy.deepcopy(rule)
@@ -88,7 +88,7 @@ def inflate_threshold(rule):
     return modified
 
 
-# ---------- NON-WEAKENING TRANSFORMATIONS (expected_flag = no) ----------
+# NON-WEAKENING TRANSFORMATIONS (expected_flag = no)
 
 def unchanged(rule):
     """No change at all. The tool must not flag this."""
@@ -121,7 +121,7 @@ def strengthen(rule):
     return None
 
 
-# ---------- GENERATION ----------
+#GENERATION
 
 TRANSFORMATIONS = [
     ("narrowed_match",      narrow_match,      "yes"),

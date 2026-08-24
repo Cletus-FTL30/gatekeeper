@@ -1,5 +1,5 @@
 title: Forfiles.EXE Child Process Masquerading [gen076] [gen077] [gen078] [gen079]
-id: 0e896b5f-ad60-47fd-b325-87f0c399a3b5
+id: 4a68a7bb-dead-4dc7-ae49-f9af8147d01d
 status: test
 description: 'Detects the execution of "forfiles" from a non-default location, in
   order to potentially spawn a custom "cmd.exe" from the current working directory.

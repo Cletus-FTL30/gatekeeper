@@ -1,5 +1,5 @@
 title: Php Inline Command Execution [gen016] [gen017] [gen018] [gen019] [gen020]
-id: e5194c4b-c271-4aa2-b999-f45d36e1343b
+id: 0d228f1f-07eb-47f8-8c3d-4cf13be301f0
 status: test
 description: Detects execution of php using the "-r" flag. This is could be used as
   a way to launch a reverse shell or execute live php code.

@@ -1,5 +1,5 @@
 title: File Encoded To Base64 Via Certutil.EXE [gen069] [gen070] [gen071]
-id: e65fa504-e78a-4276-8f86-05338c978a11
+id: 62643b78-015d-4760-8701-9cefab5d8012
 status: test
 description: Detects the execution of certutil with the "encode" flag to encode a
   file to base64. This can be abused by threat actors and attackers for data exfiltration

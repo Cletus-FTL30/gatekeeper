@@ -1,5 +1,5 @@
 title: Suspicious WindowsTerminal Child Processes [gen043] [gen044] [gen045] [gen046]
-id: 9a3f5594-caa8-4bf2-bfad-2601057ad870
+id: 3938c2cf-1073-48ff-a718-bd8b8d178576
 status: test
 description: Detects suspicious children spawned via the Windows Terminal application
   which could be a sign of persistence via WindowsTerminal (see references section)

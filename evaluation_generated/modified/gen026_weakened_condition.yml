@@ -1,5 +1,5 @@
 title: RDP Connection Allowed Via Netsh.EXE [gen023] [gen024] [gen025] [gen026]
-id: a64f59d5-4c16-4d3b-b2a0-9d2285988a04
+id: df47fef0-5b0f-480b-9599-f551901392ab
 status: test
 description: Detects usage of the netsh command to open and allow connections to port
   3389 (RDP). As seen used by Sarwent Malware

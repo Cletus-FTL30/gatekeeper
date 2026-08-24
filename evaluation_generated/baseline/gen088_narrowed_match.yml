@@ -1,5 +1,5 @@
 title: Invocation of Active Directory Diagnostic Tool (ntdsutil.exe) [gen088]
-id: 66a362bc-2f74-4d8c-89d6-cded46518b04
+id: d6280906-6df6-4967-ae44-a83b48825266
 status: test
 description: Detects execution of ntdsutil.exe, which can be used for various attacks
   against the NTDS database (NTDS.DIT)

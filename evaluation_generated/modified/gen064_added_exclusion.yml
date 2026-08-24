@@ -1,5 +1,5 @@
 title: Potential NTLM Coercion Via Certutil.EXE [gen062] [gen063] [gen064]
-id: 91fadb12-edb7-4798-8ce9-d37a2a9d3e1a
+id: 6c7dcb9d-f6c9-47b9-bdf3-377491aada0f
 status: test
 description: Detects possible NTLM coercion via certutil using the 'syncwithWU' flag
 references:

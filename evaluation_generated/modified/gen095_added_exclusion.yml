@@ -1,5 +1,5 @@
 title: Taskkill Symantec Endpoint Protection [gen094] [gen095]
-id: 5c6f857d-43dc-4b35-bb66-2f0c1abbffef
+id: df25f8f1-cf47-4746-831e-cb2c1b748329
 status: test
 description: 'Detects one of the possible scenarios for disabling Symantec Endpoint
   Protection.
