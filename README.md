@@ -1,4 +1,4 @@
-# GateKeeper: Detecting Semantic Weakening in Detection-as-Code Rules
+ #Gatekeeper: Detecting Semantic Weakening in Detection-as Code Rules using a CI/CD Integrity Gate
 
 GateKeeper is a proof-of-concept pre-deployment CI/CD integrity gate for Detection-as-Code workflows using Sigma rules.
 
