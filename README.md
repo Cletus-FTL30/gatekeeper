@@ -1,12 +1,12 @@
- #Gatekeeper: Detecting Semantic Weakening in Detection-as Code Rules using a CI/CD Integrity Gate
+# GateKeeper: Detecting Semantic Weakening in Detection-as-Code Rules using a CI/CD Integrity Gate
 
 GateKeeper is a proof-of-concept pre-deployment CI/CD integrity gate for Detection-as-Code workflows using Sigma rules.
 
 It compares a modified Sigma rule with its baseline version and identifies changes that may weaken the rule's intended detection behaviour even when the modified rule remains structurally valid and continues to pass `sigma check`.
 
-The repository contains the GateKeeper prototype, two evaluation datasets, evaluation scripts, saved results, and a local SIEM testbed used to examine the effect of rule changes on detection coverage.
+This repository contains the GateKeeper prototype, two evaluation datasets, evaluation scripts, saved results, and a local SIEM testbed used to examine the effect of rule changes on detection coverage.
 
-This project was developed as part of an MSc Cyber Security dissertation at the University of the West of England (UWE), Bristol.
+This work was developed as part of an MSc Cyber Security dissertation at the University of the West of England (UWE), Bristol.
 
 ---
 
@@ -14,7 +14,7 @@ This project was developed as part of an MSc Cyber Security dissertation at the 
 
 Detection-as-Code allows detection rules to be managed using software engineering practices such as version control, pull requests, automated testing, and CI/CD pipelines.
 
-These controls are useful for checking whether a rule is syntactically and structurally valid. However, a rule can still pass those checks after a change that alters its intended security behaviour.
+These controls are useful for checking whether a rule is syntactically and structurally valid. However, a rule can still pass these checks after a modification that changes its intended security behaviour.
 
 For example, a modification may:
 
@@ -30,7 +30,7 @@ GateKeeper adds an additional integrity check before deployment by comparing the
 
 ## Weakening Patterns
 
-The prototype evaluates five categories of rule change:
+GateKeeper evaluates five categories of rule change:
 
 | Pattern | Description |
 | --- | --- |
@@ -40,7 +40,7 @@ The prototype evaluates five categories of rule change:
 | **Added exclusion** | A new filter or exclusion suppresses events that were previously detected. |
 | **Condition change** | Detection-condition logic is altered in a way that may weaken the intended rule semantics. |
 
-GateKeeper also evaluates non-weakening changes, including unchanged rules, legitimate modifications, cosmetic edits, and strengthened rules, to determine whether the system can distinguish weakening from harmless changes.
+The evaluation also includes non-weakening changes, such as unchanged rules, legitimate changes, cosmetic edits, and strengthened rules.
 
 ---
 
@@ -73,7 +73,11 @@ Rule-based / LLM-assisted / Hybrid review
 Pre-deployment decision
 ```
 
-The rule-based implementation performs deterministic checks for known weakening patterns. The LLM-assisted implementation reviews the semantic difference between the baseline and modified rule. The hybrid approach combines both methods, using the rule-based stage to handle straightforward cases before escalating selected cases for LLM review.
+The rule-based implementation performs deterministic checks for known weakening patterns.
+
+The LLM-assisted implementation reviews the semantic difference between the baseline and modified rule.
+
+The hybrid approach combines both methods, using the rule-based stage to handle straightforward cases before escalating selected cases for LLM review.
 
 ---
 
@@ -101,7 +105,7 @@ The rule-based implementation performs deterministic checks for known weakening 
 | `evaluation/` | Hand-built dataset containing 10 baseline-modified rule pairs. |
 | `evaluation_generated/` | Generated dataset containing 125 baseline-modified rule pairs. |
 | `testbed/load_logs.py` | Loads test events into a local Elasticsearch instance. |
-| `testbed/run_testbed.py` | Compares original and weakened rule outcomes against the test events. |
+| `testbed/run_testbed.py` | Compares original and weakened rule outcomes against test events. |
 | `results/` | Saved evaluation results, charts, and summary outputs. |
 | `DATASET_VERSION.md` | Records the pinned SigmaHQ dataset version used for reproducibility. |
 
@@ -109,7 +113,7 @@ The rule-based implementation performs deterministic checks for known weakening 
 
 ## Evaluation Datasets
 
-### Hand-built dataset
+### Hand-built Dataset
 
 The `evaluation/` directory contains **10 baseline-modified Sigma rule pairs**:
 
@@ -120,9 +124,9 @@ evaluation/
 └── evaluation_set.csv
 ```
 
-The set contains both weakening and non-weakening examples, allowing the prototype to be tested on its ability to detect weakening while avoiding incorrect flags on legitimate changes.
+The set contains both weakening and non-weakening examples, allowing GateKeeper to be tested on its ability to identify semantic weakening while avoiding incorrect flags on legitimate changes.
 
-### Generated dataset
+### Generated Dataset
 
 The `evaluation_generated/` directory contains **125 baseline-modified rule pairs** generated from **20 sampled SigmaHQ rules**:
 
@@ -133,7 +137,7 @@ evaluation_generated/
 └── evaluation_set.csv
 ```
 
-The generator uses a sorted source-file list together with `random.seed(42)` to make the sampling process reproducible.
+The generator uses a sorted source-file list together with `random.seed(42)` to support reproducibility.
 
 The SigmaHQ source dataset is pinned to commit:
 
@@ -147,18 +151,18 @@ See `DATASET_VERSION.md` for dataset provenance information.
 
 ## Requirements
 
-The prototype was developed and tested using:
+GateKeeper was developed and tested using:
 
 - Ubuntu 24 under VMware
 - Python 3.12
 - Sigma CLI
 - PyYAML
 - Elasticsearch 8.15 for the SIEM testbed
-- Anthropic API access for LLM-assisted and hybrid experiments
+- Anthropic API access for LLM-assisted and hybrid evaluation
 
 Elasticsearch is only required for the SIEM testbed.
 
-The API key is only required for experiments involving LLM review. The rule-based detectors can run independently.
+The API key is only required for LLM-assisted and hybrid evaluation. The rule-based detectors can run independently.
 
 A local SigmaHQ clone is only required if the generated dataset needs to be regenerated. The generated dataset used in the evaluation is already included in this repository.
 
@@ -187,7 +191,7 @@ pip install --upgrade pip
 pip install pyyaml sigma-cli anthropic elasticsearch
 ```
 
-Install the Sigma backends used by the project:
+Install the Sigma backends used by GateKeeper:
 
 ```bash
 sigma plugin install splunk
@@ -196,13 +200,13 @@ sigma plugin install elasticsearch
 
 ### 4. Configure the API key
 
-This step is only required for the LLM-assisted and hybrid experiments.
+This step is only required for LLM-assisted and hybrid evaluation.
 
 ```bash
 export ANTHROPIC_API_KEY="your-key-here"
 ```
 
-To confirm the variable is set without exposing the full key:
+To confirm that the environment variable is set without displaying the full key:
 
 ```bash
 if [ -n "$ANTHROPIC_API_KEY" ]; then
@@ -216,9 +220,9 @@ The API key is read from the environment and is not stored in the repository.
 
 ---
 
-## Reproducing the Experiments
+## Reproducing the Evaluation
 
-### 1. Demonstrate the core problem
+### 1. Demonstrate the Core Problem
 
 Confirm that a modified rule can remain structurally valid:
 
@@ -232,9 +236,11 @@ Then run the GateKeeper evaluation:
 python3 gatekeeper/evaluate.py
 ```
 
-This demonstrates the central problem addressed by the project: structural validation alone does not determine whether a rule modification preserved its intended detection behaviour.
+This demonstrates the central problem addressed by GateKeeper: structural validation alone does not determine whether a rule modification preserved its intended detection behaviour.
 
-### 2. Rule-based evaluation
+---
+
+### 2. Rule-based Evaluation
 
 Hand-built dataset:
 
@@ -248,9 +254,11 @@ Generated dataset:
 python3 gatekeeper/evaluate_generated.py
 ```
 
-### 3. LLM-assisted evaluation
+---
 
-These experiments require `ANTHROPIC_API_KEY`.
+### 3. LLM-assisted Evaluation
+
+These commands require `ANTHROPIC_API_KEY`.
 
 Hand-built dataset:
 
@@ -270,7 +278,9 @@ Consistency test:
 python3 gatekeeper/llm_variance.py
 ```
 
-### 4. Hybrid evaluation
+---
+
+### 4. Hybrid Evaluation
 
 Hand-built dataset:
 
@@ -284,7 +294,9 @@ Generated dataset:
 python3 gatekeeper/hybrid_generated.py
 ```
 
-### 5. Regenerate the generated dataset
+---
+
+### 5. Regenerate the Generated Dataset
 
 This step is optional because the generated dataset is already included in the repository.
 
@@ -304,7 +316,9 @@ random.seed(42)
 
 to reproduce the same sampling process.
 
-### 6. Run the SIEM testbed
+---
+
+### 6. Run the SIEM Testbed
 
 Start Elasticsearch:
 
@@ -326,7 +340,7 @@ The testbed compares the detection outcome of an original rule with its weakened
 
 ## Results
 
-### Hand-built dataset
+### Hand-built Dataset
 
 | Approach | Precision | Recall | F1-score |
 | --- | ---: | ---: | ---: |
@@ -334,7 +348,7 @@ The testbed compares the detection outcome of an original rule with its weakened
 | LLM-assisted | 100% | 86% | 92% |
 | **Hybrid** | **100%** | **100%** | **100%** |
 
-### Generated dataset
+### Generated Dataset
 
 | Approach | Precision | Recall | F1-score |
 | --- | ---: | ---: | ---: |
@@ -342,18 +356,18 @@ The testbed compares the detection outcome of an original rule with its weakened
 | LLM-assisted | 100% | 100% | 100% |
 | **Hybrid** | **100%** | **100%** | **100%** |
 
-Full per-pair results are available in `results/`.
+Full per-pair evaluation outputs are available in `results/`.
 
 ---
 
 ## Key Findings
 
 - The rule-based approach achieved **100% recall on both datasets**.
-- On the generated dataset, all **15 false positives were strengthened rules**, showing that deterministic checks can detect significant change but may not always determine the direction of that change.
-- The LLM-assisted approach achieved perfect performance on the generated dataset but missed a subtler condition-related case in the hand-built set.
+- On the generated dataset, all **15 false positives were strengthened rules**, showing that deterministic checks can identify significant changes but may not always determine the direction of the change.
+- The LLM-assisted approach achieved perfect performance on the generated dataset but missed a subtler condition-related case in the hand-built dataset.
 - The hybrid approach achieved **100% precision, recall, and F1-score on both datasets**.
-- On the generated dataset, the hybrid approach required LLM review for **85 of 125 pairs**, approximately **32% fewer LLM calls** than reviewing every pair with the LLM alone.
-- In the SIEM testbed, the original `whoami` rule detected **4/4 attacker events**, while the weakened rule detected **1/4**.
+- On the generated dataset, the hybrid approach required LLM review for **85 of 125 pairs**, approximately **32% fewer LLM calls** than reviewing every pair using the LLM alone.
+- In the SIEM testbed, the original `whoami` rule detected **4 of 4 attacker events**, while the weakened rule detected **1 of 4**.
 
 These results are proof-of-concept findings and should not be interpreted as general performance claims across all Sigma rules or production Detection-as-Code environments.
 
